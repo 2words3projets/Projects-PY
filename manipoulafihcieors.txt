@@ -1,0 +1,189 @@
+def linha_mais_longa(nome_ficheiro):
+    try:
+        with open(nome_ficheiro, 'r', encoding='utf-8') as ficheiro:
+            linhas = ficheiro.readlines()
+
+        if not linhas:
+            print("O ficheiro está vazio.")
+            return
+
+        linha_mais_longa = max(linhas, key=len)
+        print("A linha mais longa é:")
+        print(linha_mais_longa)
+
+    except FileNotFoundError:
+        print(f"O ficheiro '{nome_ficheiro}' não foi encontrado.")
+    except Exception as e:
+        print(f"Ocorreu um erro: {e}")
+
+# Exemplo de uso
+nome_ficheiro = 'ambito do projeto.txt'
+linha_mais_longa(nome_ficheiro)
+
+
+
+
+
+
+
+def soma_numeros_por_linha(input_ficheiro, output_ficheiro):
+    try:
+        with open(input_ficheiro, 'r', encoding='utf-8') as ficheiro_entrada:
+            linhas = ficheiro_entrada.readlines()
+
+        with open(output_ficheiro, 'w', encoding='utf-8') as ficheiro_saida:
+            for linha in linhas:
+                numeros = linha.split()
+                soma = sum(map(float, numeros))
+                ficheiro_saida.write(f"{soma}\n")
+
+        print(f"As somas foram escritas em '{output_ficheiro}' com sucesso.")
+
+    except FileNotFoundError:
+        print(f"O ficheiro '{input_ficheiro}' não foi encontrado.")
+    except Exception as e:
+        print(f"Ocorreu um erro: {e}")
+
+input_ficheiro = 'calculations.txt'
+output_ficheiro = 'output.txt'
+soma_numeros_por_linha(input_ficheiro, output_ficheiro)
+
+
+
+
+
+
+
+
+def contar_palavras(nome_ficheiro):
+    try:
+        with open(nome_ficheiro, 'r', encoding='utf-8') as ficheiro:
+            conteudo = ficheiro.read()
+
+        palavras = conteudo.split()
+        numero_palavras = len(palavras)
+        print(f"O ficheiro '{nome_ficheiro}' contém {numero_palavras} palavras.")
+
+    except FileNotFoundError:
+        print(f"O ficheiro '{nome_ficheiro}' não foi encontrado.")
+    except Exception as e:
+        print(f"Ocorreu um erro: {e}")
+
+# Pedir ao utilizador o nome do ficheiro
+nome_ficheiro = 'ambito do projeto.txt'
+contar_palavras(nome_ficheiro)
+
+
+
+
+
+
+
+def ler_valores_de_ficheiro(nome_ficheiro):
+    try:
+        with open(nome_ficheiro, 'r', encoding='utf-8') as ficheiro:
+            linha = ficheiro.readline().strip()
+            valores = list(map(float, linha.split()))
+            return valores
+
+    except FileNotFoundError:
+        print(f"O ficheiro '{nome_ficheiro}' não foi encontrado.")
+        return []
+    except ValueError:
+        print(f"O ficheiro '{nome_ficheiro}' contém valores não numéricos.")
+        return []
+    except Exception as e:
+        print(f"Ocorreu um erro: {e}")
+        return []
+
+nome_ficheiro = 'calculations.txt'
+valores = ler_valores_de_ficheiro(nome_ficheiro)
+print("Valores lidos do ficheiro:", valores)
+
+
+
+
+
+5.
+
+calculations2.txt
+
+Alice 8.5 9.0 7.5 6.0 7.0 8.0 9.5
+Bruno 7.0 8.0 6.0 5.5
+Carla 9.0 8.5 10.0 9.5 8.0 7.5 8.5 9.0
+Daniel 6.0 5.5 7.0 8.0 9.0
+Eva 9.5 8.5 9.0 10.0 7.0 8.0 9.5 10.0
+
+
+def ler_notas(arquivo):
+    alunos_notas = {}
+    with open(arquivo, 'r') as f:
+        for linha in f:
+            partes = linha.split()
+            nome = partes[0]
+            notas = list(map(float, partes[1:]))
+            alunos_notas[nome] = notas
+    return alunos_notas
+
+def alunos_com_mais_de_seis_notas(alunos_notas):
+    for aluno, notas in alunos_notas.items():
+        if len(notas) > 6:
+            print(aluno)
+
+arquivo = 'calculations2.txt'
+alunos_notas = ler_notas(arquivo)
+alunos_com_mais_de_seis_notas(alunos_notas)
+
+
+
+
+# Função para ler o arquivo e retornar um dicionário com os alunos e suas notas
+def ler_notas(arquivo):
+    alunos_notas = {}
+    with open(arquivo, 'r') as f:
+        for linha in f:
+            partes = linha.split()
+            nome = partes[0]
+            notas = list(map(float, partes[1:]))
+            alunos_notas[nome] = notas
+    return alunos_notas
+def calcular_e_imprimir_medias(alunos_notas):
+    for aluno, notas in alunos_notas.items():
+        media = sum(notas) / len(notas)
+        print(f'{aluno}: {media:.2f}')
+
+# Nome do arquivo
+arquivo = 'calculations2.txt'
+alunos_notas = ler_notas(arquivo)
+calcular_e_imprimir_medias(alunos_notas)
+
+
+
+
+
+
+# Função para ler o arquivo e retornar um dicionário com os alunos e suas notas
+def ler_notas(arquivo):
+    alunos_notas = {}
+    with open(arquivo, 'r') as f:
+        for linha in f:
+            partes = linha.split()
+            nome = partes[0]
+            notas = list(map(float, partes[1:]))
+            alunos_notas[nome] = notas
+    return alunos_notas
+
+# Função para calcular e imprimir a nota mínima e máxima de cada aluno
+def calcular_e_imprimir_min_max(alunos_notas):
+    for aluno, notas in alunos_notas.items():
+        nota_min = min(notas)
+        nota_max = max(notas)
+        print(f'{aluno}: Mínima = {nota_min:.2f}, Máxima = {nota_max:.2f}')
+
+arquivo = 'calculations2.txt'
+alunos_notas = ler_notas(arquivo)
+calcular_e_imprimir_min_max(alunos_notas)
+
+
+
+
